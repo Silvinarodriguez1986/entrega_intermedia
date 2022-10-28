@@ -1,0 +1,17 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block entrega_I_content %}
+
+{% for destino in destinos %}
+    <!-- Post preview-->
+    <div class="card-body">
+        <h2>Nombre del pais: {{ destino.pais }}</h2>
+        <h3>Cantidad de habitantes: {{ destino.poblacion }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+{% endfor %}
+
+{% endblock %}
