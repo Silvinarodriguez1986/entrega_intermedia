@@ -1,0 +1,17 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block entrega_I_content %}
+
+{% for visa in visas %}
+    <!-- Post preview-->
+    <div class="card-body">
+        <h2>Tipo de visa: {{ visa.tipo }}</h2>
+        <h3>Costo de la visa: {{ visa.costo }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+{% endfor %}
+
+{% endblock %}

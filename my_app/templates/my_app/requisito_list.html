@@ -1,0 +1,18 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+
+{% block entrega_I_content %}
+
+{% for requisito in requisitos %}
+    <!-- Post preview-->
+    <div class="card-body">
+        <h2>Tipo de visa: {{ requisito.visa }}</h2>
+        <h3>Estudios requeridos: {{ requisito.estudio }}</h3>
+        <h3>Edad permitida hasta: {{ requisito.edad }}</h3>
+    </div>
+    <!-- Divider-->
+    <hr/>
+{% endfor %}
+
+{% endblock %}
