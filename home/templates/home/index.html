@@ -27,28 +27,32 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+      <!-- Page Wrapper -->
+      <div id="wrapper">
+
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home:index' %}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Dreamers <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Home</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+              <!-- Navigation -->
+              <nav class="navbar"></nav>
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{% url 'home:index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home</span></a>
+                    <span>Dreamers</span></a>
             </li>
 
             <!-- Divider -->
@@ -104,18 +108,35 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+                    
+
+                    <!-- Topbar Search -->      
                   
-                    <!-- Topbar Search -->
-                   
-                    <form action="{% url 'home:search' %}" method="GET">
-                        <div>
-                            <input type="text" name="search_param" placeholder="Buscar.."
-                            {% if search_param %} value="{{ search_param }}" {% endif %}
-                            >
-                            <input type="submit" value="Buscar">
-                            <a style="color: blue" href="{% url 'home:index' %}"><i class="fa fa-undo"></i></a>
+                    {% block buscador %}
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                    method="GET">
+                      {% csrf_token %}
+                      <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                          </button>
                         </div>
+                      </div>
                     </form>
+                    
+                    {% endblock buscador %}
+
+                    <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
 
                     <!-- Divider-->
                     <hr class="my-4" />
@@ -132,19 +153,19 @@
                         <a href="{% url 'my_app:destino-add'  %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Crear Destino</a>
                     </div>
-
+<br><br>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Arma tu propio viaje de Working Holiday o Work and Study, como ya lo hicieron miles de Dreamers</h1>
                         <a href="{% url 'my_app:visa-add'  %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Crear Visa</a>
                     </div>
-
+<br><br>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Conoce todos los destinos disponibles</h1>
                         <a href="{% url 'my_app:requisito-add'  %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Crear Requisito</a>
                     </div>
-
+<br><br>
                     <div class="row">
                         {% if messages %}
                         {% for message in messages %}
@@ -160,9 +181,9 @@
                         
                     {% block entrega_I_content %}
                         
-                    <!-- Content Row -->
-                    <div class="row">1
-
+                    <!-- Content  Row-->
+                   
+                    <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -170,8 +191,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Working Holiday Visa</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2022</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -182,6 +203,36 @@
                         </div>
 
                     </div>
+                    
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Work and Study Visa</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2022</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                   
+             <!-- Content Row -->
+
+               <div class="row"> 
+                 
+
+                    
                         
                     {% endblock %}
                         
@@ -192,10 +243,12 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
+
+            <iframe width="500" height="315" src="https://www.youtube.com/embed/MkdOKcyFUi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Silvina Rodriguez 2022</span>
                     </div>
                 </div>
             </footer>
@@ -248,6 +301,8 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
+   
 
 </body>
 

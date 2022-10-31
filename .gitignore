@@ -8,3 +8,4 @@ x_*
 db.sqlite3
 staticfiles/*
 media/*
+static/*
